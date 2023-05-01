@@ -28,6 +28,9 @@ class NatureRemoAircon {
 
     // `log` is the logger for this service.
     this.log = log;
+    
+    // `name` is the name of the device.
+    this.name = config.name;
 
     // `access_token` is the token for the API.
     // Users must specify it in the configuration (mandatory).
@@ -406,7 +409,9 @@ class NatureRemoAircon {
   }
 
   getServices() {
-    const aircon = new hap.Service.Thermostat('エアコン');
+    const aircon = new hap.Service.Thermostat(this.name);
+    aircon.setCharacteristic(hap.Characteristic.SerialNumber, this.appliance_id || 'Unknown');
+
     aircon
       .getCharacteristic(hap.Characteristic.CurrentHeatingCoolingState)
       .on('get', this.getHeatingCoolingState.bind(this));

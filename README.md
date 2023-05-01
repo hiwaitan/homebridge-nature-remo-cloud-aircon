@@ -29,3 +29,10 @@ Example:
 * Please get your access token at https://home.nature.global/ and set it to `access_token`.
 * `appliance_id` can be left blank if you only have one aircon.
 * `skip_command_request_if_no_change` can be omitted (Default: true). With this option enabled, command request (e.g. mode or temperature change) will not be sent to Nature Remo API if the request will change nothing by comparing it with the current AC state managed by Nature Remo. You may want to turn this false if you control your AC using _both_ Nature Remo and factory hardware remotes in your Home since the latest AC state in the Nature Remo might be incorrect.
+
+
+# 変更点
+* デバイス名を「エアコン」固定からConfigのnameへ変更します。
+複数のエアコンを使用する際、Homebridge Alexaからデバイス名の重複で怒られるのを防ぎます。
+* シリアル番号を通知します。
+Homebridge Prometheus Exporterなどのプラグインでエアコンを識別するために使用します。
